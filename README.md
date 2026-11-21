@@ -174,3 +174,4 @@ service cloud.firestore {
 | List is empty but console has data        | Collection name mismatch (`todos` vs `Todos`)                  |
 | `Unable to resolve "firebase/firestore"`  | Run `npm install firebase`, then restart with `npx expo start -c` |
 | Each item warns about missing `key`       | Use `keyExtractor={(item) => item.id}`                         |
+"# MADWeek10" 
