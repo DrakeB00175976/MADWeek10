@@ -56,8 +56,8 @@ export default function App() {
 
     try {
       await addTodo(text.trim());
-
-      // TODO 7: YOUR CODE HERE
+      setText("");
+      await loadTodos();
     } catch (error) {
       Alert.alert("Error", "Could not save todo: " + error.message);
     }
@@ -81,18 +81,18 @@ export default function App() {
         </TouchableOpacity>
       </View>
 
-      {/* TODO 6: Handle loading and empty states.
-          - If loading is true, show <ActivityIndicator size="large" /> instead of the list.
-          - If loading is false and todos is empty, show:
-            <Text style={styles.empty}>No todos yet</Text>
-      */}
-      <FlatList
-        data={todos}
-        keyExtractor={(item) => item.id}
-        renderItem={({ item }) => (
-          <TodoItem title={item.title} completed={item.completed} />
-        )}
-      />
+      {loading ? (
+        <ActivityIndicator size="large" />
+      ) : (
+        <FlatList
+          data={todos}
+          keyExtractor={(item) => item.id}
+          renderItem={({ item }) => (
+            <TodoItem title={item.title} completed={item.completed} />
+          )}
+          ListEmptyComponent={<Text style={styles.empty}>No todos yet</Text>}
+        />
+      )}
     </SafeAreaView>
   );
 }
